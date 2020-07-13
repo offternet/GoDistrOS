@@ -26,26 +26,46 @@ If your file system is different than type ext4, use Gparted to reformat the cur
     
 3. Write the debian-usb-boot-grub-ext4-swap.img file to USB Stick - 16GB (or larger)
     sudo if=./debian-usb-boot-grub-ext4-swap.img of=/dev/sdb
+    
+    NOTE: If you are NOT using ext4 file system for your Custom Distro build. 
+    Open Gparted and format USB Stick ext4 partition to extX that you are using.
+   
+    Your new GoDistro BASE USB Stick now needs a Debian filesystem.
+    
+CREATE YOUR CUSTOM DISTRO ON HARD DRIVE OR USB STICK
 
-4. Use Gparted to Shrink your custom distro partition all the way except for 25MB or 
-	(Preferred way) use dd to truncate hard drive partition as it is written to the usb stick u
-  	(ADD MORE ABOUT dd count= and bs= here to get only used block sectors to USB /dev/sdbX)
+4. Use Gparted to Shrink your custom distro partition all the way except for 25MB or use the
+	PREFERRED WAY --> use dd to truncate hard drive partition as it is written to the usb stick
+  	(ADD MORE ABOUT dd count= and bs= here to get only used block sectors written to img or directly to USB /dev/sdbX partition)
 	
-5. Use dd to write your custom distro to /dev/sdbX (Using /dev/sda2 as an exmple partiton where you built your custom distro)
-    sudo if=/dev/sda2 of=/dev/sdbX bs=4MB count=[number x 4MB total used block sectors on your custom data partition]
+5. Use dd to write your Custom Distro directly to your new GoDistro BASE USB Stick (Using /dev/sda2 as exmple partiton where you built your custom distro)
+   TRANSER CUSTOM DISTRO DIRECTLY FROM BUILD PARTITION TO UBS STICK ROOT PARTITION: /dev/sdXx 
+   
+    sudo if=/dev/sda2 of=/dev/sdxX bs=4MB count=[count number] bs 4MB x count number = total block sectors copied. 
+    
     (NEED TO ADD MORE EXPLAIN HERE)
-    Or if you shrunk your custom distro partition use this command:
-    sudo if=/dev/sda2 of=/dev/sdbX bs=4M status=progress && sync
+    
+    ONCE CUSTOM DISTRO HAS BEEN SHRUNK OR TRUNCATED 
+    
+    sudo if=./image-file.img of=/dev/sdxX bs=4M status=progress && sync  
 
-6. Open Gparted and create new uudi number for ext4 and swap partitions on USB Stick after distro is written to /dev/sdb1
-    sudo gparter /dev/sdb
-    Select ext4 partition
+6. Open Gparted and create new uudi number for ext4 and swap partitions on USB Stick after distro is written to /dev/sdxX
+
+    sudo gparter /dev/sdxX
+    
+    	Select ext4 partition
+    
 	    Ckick Partition --> Click Check	--> Click Green Checkmark
+	    
   	  Click Close
-	  Select Swap partition
-	    Click Partition --> Click New UUID --> Click Green Checkmark
+	  
+	Select Swap partition
+	  
+	    Click Partition --> Click New UUID 	--> Click Green Checkmark
+	    
 	    CLick Close 
-	  Exit Gparted
+	    
+ Exit Gparted
   
 7. 5. Insert Correct uuid numbers in 2 critical files of partition /dev/sdb1
 
