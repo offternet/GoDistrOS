@@ -35,39 +35,55 @@ If your file system is different than type ext4, use Gparted to reformat the cur
 CREATE YOUR CUSTOM DISTRO ON HARD DRIVE OR USB STICK
 
 4. Use Gparted to Shrink your custom distro partition all the way except for 25MB or use the
-	PREFERRED WAY --> use dd to truncate hard drive partition as it is written to the usb stick
-  	(ADD MORE ABOUT dd count= and bs= here to get only used block sectors written to img or directly to USB /dev/sdbX partition)
+	PREFERRED WAY --> use dd to truncate image or hard drive partition as it is written to the usb stick root partiton to only write used block sectors.
 	
-5. Use dd to write your Custom Distro directly to your new GoDistro BASE USB Stick (Using /dev/sda2 as exmple partiton where you built your custom distro)
-   TRANSER CUSTOM DISTRO DIRECTLY FROM BUILD PARTITION TO UBS STICK ROOT PARTITION: /dev/sdXx 
+  	(ADD HERE MORE ABOUT calculating dd count= x bs= amount here to get only used block sectors written to img or directly to USB /dev/sdbX partition)
+	
+5. Use dd to write your Custom Distro image to your new GoDistro BASE USB Stick root partition: /dev/sdx1
+
+   ONCE CUSTOM DISTRO HAS BEEN SHRUNK OR TRUNCATED TO IMAGE FILE
    
-    sudo if=/dev/sda2 of=/dev/sdxX bs=4MB count=[count number] bs 4MB x count number = total block sectors copied. 
+   If you shrunk your Custom Distro Build Partition you can write from this partiton directly to BASE USB Stick root partition:
+   
+   (Using hard drive 2nd partition as your Custom Distro Build Partition to BASE USB Stick root partition)
+
+   	sudo dd if=/dev/sda2 of=/dev/sdx1 bs=4M status=progress && sync
     
-    (NEED TO ADD MORE EXPLAIN HERE)
-    
-    ONCE CUSTOM DISTRO HAS BEEN SHRUNK OR TRUNCATED 
-    
-    sudo if=./image-file.img of=/dev/sdxX bs=4M status=progress && sync  
+   (If you created a truncated image of your Custom Disto Build Partition, write that img file to BASE USB Stick root partition)
+   
+    sudo if=./your-custom-distro-filen-name.img of=/dev/sdx1 bs=4M status=progress && sync  
+
+
+   TRANSER CUSTOM DISTRO DIRECTLY FROM BUILD PARTITION TO USB BASE STICK ROOT PARTITION after it has been SHRUNK:
+   
+    sudo if=/dev/sda2 of=/dev/sdx1 bs=4M status=progress && sync
+   
+
+   **AFTER YOUR CUSTOM DISTRO FILESYSTEM has been dd TO GoDistro BASE USB STICK root partition:
 
 6. Open Gparted and create new uudi number for ext4 and swap partitions on USB Stick after distro is written to /dev/sdxX
 
-    sudo gparter /dev/sdxX
-    
-    	Select ext4 partition
-    
-	    Ckick Partition --> Click Check	--> Click Green Checkmark
+    sudo gparted /dev/sdx1    
+    	
+	Select ext4 partiton    
+
+		Ckick Partition --> Click Check		--> Click Green Checkmark
+	
+	Select ext4 partiton
+	
+	    	Click Partition --> Click New UUID	--> Click Green Checkmark
 	    
-  	  Click Close
+  	  	Click Close
 	  
 	Select Swap partition
 	  
-	    Click Partition --> Click New UUID 	--> Click Green Checkmark
+	    	Click Partition --> Click New UUID 	--> Click Green Checkmark
 	    
-	    CLick Close 
+	    	CLick Close 
 	    
  Exit Gparted
   
-7. 5. Insert Correct uuid numbers in 2 critical files of partition /dev/sdb1
+7. Update Correct uuid numbers in 2 critical files of partition /dev/sdb1 and Grub.cfg to allow proper booting to filesystem.
 
 	A. sudo blkid 
 		Find uuid for ext4 Partition sdb1 (Root) (goes in /etc/initramfs-tools/conf.d/resume and /etc/fsab files
@@ -97,10 +113,14 @@ CREATE YOUR CUSTOM DISTRO ON HARD DRIVE OR USB STICK
 
 	D. Write Down uuid for (root) sdb1. We will put in several locations in /boot/grub/grub.cfg
 
-	E. sudo /boot/grub/grub.cfg 
-		(Replace existing uuid numbrer above the "menuentry" and in the 1st "menuentry" section but, not in submenuentry)
+	E. Use editor to update /boot/grub/grub.cfg (must be done with root access permissions)
+	
+ 	 (Replace existing uuid numbrer in the 1st "menuentry" and above it  but, not in any submenuentry)
 
-		Save: CTRL+o / then exit Nano: CTRL+x
+	  If using nano editor: after making changes:
+	  
+		Save --> 	CTRL+o 
+		Exit Nano -->	CTRL+x
 
 	F. Disable 30_os-prober in Grub2 (this will prevent hard drive partitions listed on USB Stick)
 
