@@ -1,8 +1,13 @@
 #debian-usb-boot-grub-ext4-swap READMD.md
 
-The usb-debian-grub-ext4-swap.img is only 1MB in size but, is the BASE (See BASE comment) to create Master Boot Record, Grub, 11GB ext4 and 3GB swap partitons on a USB Stick. All you do is add the filesystem via dd command to /dev/sdbX (X represents the drive device name for your USB Stick); modify a few files after file system is installed on USB Stick, reboot, update initramfs and grub2 ( all explained below) and you can distribute your own Custom Distro on a USB Stick. 
+WARNING !!! **The Improper Use of the Linux dd command and/or Gparted can destroy your data and even hard drives** 
+		Aways launch gparted with "sudo gparted /dev/sdxX (x for usb device name is usually /dev/sdb, /dev/sdc, etc. Could also be /dev/hdb, etc.
+		X refers to drive device partition number: (for example) root partition /dev/sdb1 | swap partition /dev/sdb2 (as built in my BASE USB Image)
+		Double check dd commands that you are using the correct sdxX - Same in Gparted, top right: /dev/sdx is shown.
+		
+The usb-debian-grub-ext4-swap.img is only 1MB in size but, is the BASE (See BASE comment) to create Master Boot Record, Grub, 11GB ext4 and 3GB swap partitons on a USB Stick. All you do is add the filesystem via dd command to /dev/sdxX; modify a few files after your file system is written to USB BASE Stick, reboot, update initramfs and grub2 (all explained below) and you can distribute your own Custom Distro on a USB Stick. 
 
-(FUTURE TO DO: Automated YAD GUI - Bash Script to handle all terminal commands.)
+(FUTURE TO DO: Automated YAD GUI - Bash Script to handle all terminal commands. Automate reducing image size of the Finished Custom Distro USB Stick)
 
 
 BASE Comment: BASE as being defined as, "missing an OS filesystem from ext4 partition /dev/sdX that contians a Debian Linux OS.
@@ -24,13 +29,13 @@ If your file system is different than ext4 type, use Gparted to reformat the ext
 
 4. Use Gparted to Shrink your custom distro partition all the way except for 25MB or 
 	(Preferred way) use dd to truncate hard drive partition as it is written to the usb stick u
-  	(ADD MORE ABOUT dd count= and bs= here to get only used block sectors to USB /dev/sdb1)
+  	(ADD MORE ABOUT dd count= and bs= here to get only used block sectors to USB /dev/sdbX)
 	
-5. Use dd to write your custom distro to /dev/sdb1 (Using /dev/sda2 as an exmple partiton where you built your custom distro)
-    sudo if=/dev/sda2 of=/dev/sdb1 bs=4MB count=[number x 4MB total used block sectors on your custom data partition]
+5. Use dd to write your custom distro to /dev/sdbX (Using /dev/sda2 as an exmple partiton where you built your custom distro)
+    sudo if=/dev/sda2 of=/dev/sdbX bs=4MB count=[number x 4MB total used block sectors on your custom data partition]
     (NEED TO ADD MORE EXPLAIN HERE)
     Or if you shrunk your custom distro partition use this command:
-    sudo if=/dev/sda2 of=/dev/sdb1 bs=4M status=progress && sync
+    sudo if=/dev/sda2 of=/dev/sdbX bs=4M status=progress && sync
 
 6. Open Gparted and create new uudi number for ext4 and swap partitions on USB Stick after distro is written to /dev/sdb1
     sudo gparter /dev/sdb
