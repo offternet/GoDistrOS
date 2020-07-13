@@ -1,23 +1,27 @@
 # debian-usb-boot-grub-ext4-swap READMD.md
 
 The usb-debian-grub-ext4-swap.img file will create a bootable USB 16GB stick.  
-1. Download usb-debian-grub-ext4-swap.zip file
+1. Download debian-usb-boot-grub-ext4-swap-master.zip:
+	Click "Cdoe" ---> Click Download Zip
 
 2. Unzip it, in Linux Terminal: 
-    cd (to directory where usb-debian-grub-ext4-swap.zip file is located)
-    sudo unzip ./usb-debian-grub-ext4-swap.zip 
-    (File will be unzipped to a directory called: (update with real name)
-    cd (Update with real action)
+    cd ~/Dowloads (or where the file was downloaded on your system)
+    sudo unzip ./debian-usb-boot-grub-ext4-swap-master.zip 
+    (File will be unzipped to a directory (folder) called: debian-usb-boot-grub-ext4-swap-master
+    cd debian-usb-boot-grub-ext4-swap-master
     
 3. Write debian-usb-boot-grub-ext4-swap.img file to USB Stick - 16GB (or larger)
-    sudo if=./usb-debian-grub-ext4-swap.img of=/dev/sdb
+    sudo if=./debian-usb-boot-grub-ext4-swap.img of=/dev/sdb
 
-4. Use Gparted to Shrink your custom distro partition all the way except for 25MB or use dd to truncate hard drive partition as it is written to the usb stick u
-   (NEED TO ADD MORE HERE)
-   
+4. Use Gparted to Shrink your custom distro partition all the way except for 25MB or 
+	(Preferred way) use dd to truncate hard drive partition as it is written to the usb stick u
+  	(ADD MORE ABOUT dd count= and bs= here to get only used block sectors to USB /dev/sdb1)
+	
 5. Use dd to write your custom distro to /dev/sdb1 (Using /dev/sda2 as an exmple partiton where you built your custom distro)
     sudo if=/dev/sda2 of=/dev/sdb1 bs=4MB count=[number x 4MB total used block sectors on your custom data partition]
     (NEED TO ADD MORE EXPLAIN HERE)
+    Or if you shrunk your custom distro partition use this command:
+    sudo if=/dev/sda2 of=/dev/sdb1 bs=4M status=progress && sync
 
 6. Open Gparted and create new uudi number for ext4 and swap partitions on USB Stick after distro is written to /dev/sdb1
     sudo gparter /dev/sdb
