@@ -10,10 +10,10 @@ The usb-debian-grub-ext4-swap.img is only 1MB in size but, is the BASE (See BASE
 (FUTURE TO DO: Automated YAD GUI - Bash Script to handle all terminal commands. Automate reducing image size of the Finished Custom Distro USB Stick)
 
 
-BASE Comment: BASE as being defined as, "missing an OS filesystem from ext4 partition /dev/sdX that contians a Debian Linux OS.
+**BASE Comment: BASE as being defined as, "missing the required Linux OS filesystem from ext4 partition on /dev/sdx1.
 
-This image does NOT include a filesystem in its ext4 (root) partition, you must add your own complete customized Debian System
-If your file system is different than ext4 type, use Gparted to reformat the ext4 partition to your file system.
+The BASE image does NOT include a filesystem in its ext4 (root) partition, you must add your own complete customized Debian System
+If your file system is different than type ext4, use Gparted to reformat the current ext4 partition to your file system type.
 
 1. Download debian-usb-boot-grub-ext4-swap-master.zip:
 	Click "Code" ---> Click "Download ZIP"
