@@ -146,7 +146,7 @@ CREATE YOUR CUSTOM DISTRO ON HARD DRIVE OR USB STICK
      
 Note: Do not distribute custom logos or images of your base LinuxOS and include the required License files for all non-free programs. Do not distribute Google-Chrome --> Use Chromium. See terms of "ALL" required licenses as well. If you choose to a Respin of Sparkylinux, you are required to include this statement where is obvious:
 
-"This is an UnOfficial Respin of Sparky Linux and it is NOT SUPPORTED BY the Author and his Development Team or Sparkylinux Communit."
+"This is an UnOfficial Respin of Sparky Linux and it is NOT SUPPORTED BY the Author and his Development Team or Sparkylinux Community."
 
 Disclaimer: YOU MUST ACCEPT AND AGREE TO TERMS OF THIS DISCLAIMER:
 This is an experimental process for installing a modified Debian based LinuxOS build on to a USB Stick. As such, you must not use this process unless you accept 100% responsiblity for your actions and any and all possible consequences that could result known and unknown now or in the future. You must agree to release author, Robert J. Cooper, Nevada, USA from any and all responsibilty for your use of any part of this process. This Disclaimer and document is subject to change without any prior notice of anykind.  Any possible claims to be arbitrated under the laws of Nevada, USA. You must read and accept terms of GPL 3.0 License
