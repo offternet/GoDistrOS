@@ -9,6 +9,7 @@ The usb-debian-grub-ext4-swap.img is only 1MB in size but, is the BASE (See BASE
 
 (FUTURE TO DO: Automated YAD GUI - Bash Script to handle all terminal commands. Automate reducing image size of the Finished Custom Distro USB Stick)
 
+<img src="https://github.com/godistro/GoDistrOS/raw/master/logos/godistOS-300.png">
 
 **BASE Comment: BASE as being defined as, "missing the required Linux OS filesystem from ext4 partition on /dev/sdx1.
 
