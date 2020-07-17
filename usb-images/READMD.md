@@ -14,7 +14,8 @@ GoDistrOS-USB-11GBext4-4GBswap-1MBimageV1.0.2.img  Image file
 
   Delete and Create Partition Table on USB Stick (!!!!! Erases all Data on USB Stick)
   
-    sudo Gparted /dev/sdx --> Device --> Create Partiton Table --> Exit
+    sudo Gparted /dev/sdx 
+   --> Device --> Create Partiton Table --> Exit
   
   Write GoDistrOS image with Swap Partiton to your USB Stick:
   
@@ -48,7 +49,8 @@ Follow above procedure and after GoDistrOS-USB-11GBext4-NoSwap-1MBimageV1.0.2.im
 
 (CREATE SWAP PARTITON)
 
-      sudo gparted /dev/sdx  --> Click Partition --> New --> Partition --> Apply --> Green Checkmark --> Close --> Exit Gparted.
+      sudo gparted /dev/sdx  
+   --> Click Partition --> New --> Partition --> Apply --> Green Checkmark --> Close --> Exit Gparted.
   
   
 
