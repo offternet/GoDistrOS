@@ -1,8 +1,11 @@
 Currently there are 2 GoDistrOS USB BASE Images.
 
 !!!! "x" in sdx is your USB Drive device number. 
+
 WARNING !!! You must have correct number for "x" that matches your USB Stick or hard drive goes bye, bye)
-   Used sudo fdisk -l  --> displays hard drives and usb stick /dev/sdxX device names
+   
+   Open Terminal,  sudo fdisk -l  
+     -> displays /dev/sdx device names for both drives and usb sticks 
    
 ==================
 
