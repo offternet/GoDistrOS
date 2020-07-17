@@ -22,10 +22,17 @@ Note: Do not distribute custom logos or images of your base LinuxOS and include 
 
 "This is an UnOfficial Respin of Sparky Linux and it is NOT SUPPORTED BY the Author and his Development Team or Sparkylinux Community."
 
-Disclaimer: YOU MUST ACCEPT AND AGREE TO TERMS OF THIS DISCLAIMER:
+==============
+
+**Disclaimer: YOU MUST ACCEPT AND AGREE TO TERMS OF THIS DISCLAIMER: 
+
+Your use and/or continued use of any GoDistro and/or GoPortal information, et-al, is proof of your complete and absolute acceptance and agreement to our Disclaimer terms and conditions.
+
 This is an experimental process for installing a modified Debian based LinuxOS build on to a USB Stick. As such, you must not use this process unless you accept 100% responsiblity for your actions and any and all possible consequences that could result known and unknown now or in the future. You must agree to release author, Robert J. Cooper, Nevada, USA from any and all responsibilty for your use of any part of this process. This Disclaimer and document is subject to change without any prior notice of anykind to the extent allowed by applicable laws.  Any possible claims to be arbitrated under the laws of Nevada, USA. You must read and accept terms of GPL 3.0 License.
 
 License Granted:  GPL 3.0 --> https://www.gnu.org/licenses/gpl-3.0.en.html
+
+================
 
      ]]\\\
 
