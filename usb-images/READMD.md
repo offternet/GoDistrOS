@@ -18,19 +18,22 @@ GoDistrOS-USB-11GBext4-4GBswap-1MBimageV1.0.2.img  Image file
   
   Write GoDistrOS image with Swap Partiton to your USB Stick:
   
-    sudo dd if=./GoDistrOS-USB-11GBext4-4GBswap-1MBimageV1.0.2.img of=/dev/sdx1 bs=4MB status=progress && sync
+      sudo dd if=./GoDistrOS-USB-11GBext4-4GBswap-1MBimageV1.0.2.img of=/dev/sdx1 bs=4MB status=progress && sync
     
-    Use dd to copy img file or Hard Drive partition to your USB Stick root partiton (ext4) 
+   
+  Use dd to copy img file or Hard Drive partition to your USB Stick root partiton (ext4) 
     
-    (Below example copies sda2 to USB Stick root partition /dev/sdb1)
+  (Below example copies sda2 to USB Stick root partition /dev/sdb1)
   
-    - Shrink partiton /dev/sda2 as much as possible +100 MB (It can be up to 10.5GB)
+  - Shrink partiton /dev/sda2 as much as possible +100 MB (It can be up to 10.5GB)
     
   (Copy Hard Drive Partiton to USB Stick)
-    sudo dd if=/dev/sda2 of=/dev/sdb1 bs=4MB status=progress && sync
+  
+      sudo dd if=/dev/sda2 of=/dev/sdb1 bs=4MB status=progress && sync
     
   (Copy dd img file to USB Stick)
-    sudo dd if=./my-image-file.img of=/dev/sdb1 bs=4MB status=progress && sync
+    
+      sudo dd if=./my-image-file.img of=/dev/sdb1 bs=4MB status=progress && sync
     
   Your Not Done Yet !! See Tutorial as uuids need to be updated in fstab resume and grub.cfg files.
   
@@ -45,7 +48,7 @@ Follow above procedure and after GoDistrOS-USB-11GBext4-NoSwap-1MBimageV1.0.2.im
 
 (CREATE SWAP PARTITON)
 
-  sudo gparted /dev/sdx  --> Click Partition --> New --> Partition --> Apply --> Green Checkmark --> Close --> Exit Gparted.
+      sudo gparted /dev/sdx  --> Click Partition --> New --> Partition --> Apply --> Green Checkmark --> Close --> Exit Gparted.
   
   
 
